@@ -2,14 +2,13 @@
 include("koneksi.php");
 
 if(isset($_POST['save'])){
-$query_input=mysqli_query($koneksi,"insert into anggota(nama,alamat,no_tlpn)
+$query_input=mysqli_query($koneksi,"insert into kategori(id_kategori,nama)
 values(
-'".$_POST['nama']."',
-'".$_POST['alamat']."',
-'".$_POST['no_tlpn']."')");
+'".$_POST['id_kategori']."',
+'".$_POST['nama']."')");
 
 if($query_input){
-header('location:view_anggota.php');
+header('location:view_kategori.php');
 }else{
 	echo mysqli_error();
 }
@@ -18,16 +17,12 @@ header('location:view_anggota.php');
 <form method="POST">
 <table class="table table-bordered" border="1">
 	<tr>
+		<td>ID Kategori</td>
+		<td><input type="text" name="id_kategori"></td>
+	</tr>
+	<tr>
 		<td>Nama</td>
 		<td><input type="text" name="nama"></td>
-	</tr>
-	<tr>
-		<td>Alamat</td>
-		<td><input type="text" name="alamat"></td>
-	</tr>
-	<tr>
-		<td>No Tlpon</td>
-		<td><input type="text" name="no_tlpn"></td>
 	</tr>
 		<tr>
 			<td><input type="submit" name="save"></td>
