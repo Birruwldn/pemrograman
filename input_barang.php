@@ -2,36 +2,40 @@
 include("koneksi.php");
 
 if(isset($_POST['save'])){
-$query_input=mysqli_query($koneksi,"insert into barang(id_barang,id_kategori,nama)
-values(
-'".$_POST['id_barang']."',
-'".$_POST['id_kategori']."',
-'".$_POST['nama']."')");
+$query=mysqli_query($koneksi,"INSERT INTO barang(nama,kategori_id,satuan_id)
+VALUES(	
+'".$_POST['nama']."',
+'".$_POST['kategori_id']."',
+'".$_POST['satuan_id']."')");
 
-if($query_input){
-header('location:view_barang.php');
+if($query){
+	header('location:tampil_barang.php');
 }else{
 	echo mysqli_error();
+	}
 }
-}
+include('header.php');
 ?>
-<form method="POST">
-<table class="table table-bordered" border="1">
+<h4>Input Transaksi </h4>
+<form method="post">
+<table class="table">
 	<tr>
-		<td>ID Barang</td>
-		<td><input type="number" name="id_barang"></td>
+		<td>nama</td>
+		<td><input type="text" name="nama" class="form-control"></td>
 	</tr>
 	<tr>
-		<td>ID Kategori</td>
-		<td><input type="text" name="id_kategori"></td>
+		<td>katagori_id</td>
+		<td><input type="text" name="kategori_id" class="form-control"></td>
 	</tr>
 	<tr>
-		<td>Nama</td>
-		<td><input type="text" name="nama"></td>
+		<td>satuan_id</td>
+		<td><input type="text" name="satuan_id" class="form-control"></td>
 	</tr>
 		<tr>
-			<td><input type="submit" name="save"></td>
-            <td><input type="reset" name="reset"></td>
+			<td><input type="submit" name="save" class="btn btn-danger"></td>
 		</tr>
 </table>
 </form>
+<?php
+include('footer.php')
+?>
